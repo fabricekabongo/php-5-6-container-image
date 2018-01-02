@@ -1,0 +1,32 @@
+FROM ubuntu:trusty
+MAINTAINER Fabrice Kabongo <fabrice.k.kabongo[at]gmail.com>
+
+RUN apt-get -y update && apt-get install -y python-software-properties \
+software-properties-common
+RUN add-apt-repository ppa:ondrej/php
+
+RUN apt-get -y update && apt-get install -y --force-yes \
+ acl\
+ git \
+ php \
+ php-cli \
+ php-curl \
+ php-xml \
+ php-mysql \
+ php-sqlite \
+ php-zip
+
+
+RUN apt-get install -y curl \
+ wget \
+ vim \
+ telnet
+
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN apt-get install -y apache2
+
+RUN a2enmod rewrite
+
+RUN wget https://phar.phpunit.de/phpunit-6.phar && chmod +x phpunit-6.phar && mv phpunit-6.phar /usr/local/bin/phpunit && phpunit --version
