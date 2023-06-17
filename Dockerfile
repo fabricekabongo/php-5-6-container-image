@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:trusty-20190515
 MAINTAINER Fabrice Kabongo <fabrice.k.kabongo[at]gmail.com>
 
 RUN apt-get -y update && apt-get install -y python-software-properties \
